@@ -1,58 +1,125 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="fullsize">
+    <Header isActive="home"/>
+    <div v-if="loading" class="w3-container w3-text-white w3-center">
+      <p><i class="fa fa-spinner w3-spin w3-text-white" style="font-size:64px"></i></p>
+    </div>
+    <div v-else>
+      <div>
+        <div class="w3-card opacityTest w3-hide-small" style="width:50%;margin:auto;">
+          <header class="w3-container opacityTest2">
+            <h2 class="w3-text-white">Metorite of the day</h2>
+          </header>
+          <div class="w3-container w3-text-white">
+            <p>Name: {{data[0].name}} </p>
+            <p>Mass: {{data[0].mass}}</p>
+            <p>Class: {{data[0].recclass}}</p>
+            <p>Fell in: {{datefell(data[0].year)}}</p>
+          </div>
+        </div>
+        <div class="w3-card opacityTest w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
+          <header class="w3-container opacityTest2">
+            <h2 class="w3-text-white">Metorite of the day</h2>
+          </header>
+          <div class="w3-container w3-text-white">
+            <p>Name: {{data[0].name}} </p>
+            <p>Mass: {{data[0].mass}}</p>
+            <p>Class: {{data[0].recclass}}</p>
+            <p>Fell in: {{datefell(data[0].year)}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-card opacityTest w3-text-white w3-hide-small" style="width:50%;margin:auto;">
+        <header class="w3-container opacityTest2">
+          <h2>Meteorites this year</h2>
+        </header>
+        <ul class="w3-ul">
+          <li :key="index" v-for="(item, index) in latest">
+            <p>Name: {{item.name}} </p>
+            <p>Mass: {{item.mass}}</p>
+            <p>Class: {{item.recclass}}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="w3-card opacityTest w3-text-white w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
+        <header class="w3-container opacityTest2">
+          <h2>Meteorites this year</h2>
+        </header>
+        <ul class="w3-ul">
+          <li :key="index" v-for="(item, index) in latest">
+            <p>Name: {{item.name}} </p>
+            <p>Mass: {{item.mass}}</p>
+            <p>Class: {{item.recclass}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import moment from 'moment';
+import Header from './Header.vue';
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  components: {
+    Header
+  },
+  data() {
+    return {
+      data: null,
+      latest: null,
+      loading: true,
+      errorring: false
+    }
+  },
+  methods: {
+    datefell(input) {
+      return moment(input).format('YYYY');
+    }
+  },
+  mounted() {
+    const API_URL = 'https://limitless-peak-14538.herokuapp.com/meteor/';
+    const url = `${API_URL}?random=true`;
+    const url2 = `${API_URL}?year=` + moment().format('YYYY');
+
+    axios.get(url)
+    .then(response => {
+      this.data = JSON.parse(response.data);
+    })
+    .catch(() => {
+      this.errorring = true;
+    })
+    .finally(() => {
+      this.loading = false;
+    })
+
+    axios.get(url2)
+    .then(response => {
+      this.latest = JSON.parse(response.data);
+    })
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style>
+  html, body {
+    height: 100%;
+  }
+  .fullsize {
+    min-height: 100%;
+    position: relative;
+    background-image: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .opacityTest {
+    background-color: rgba(124, 124, 124, 0.5);
+  }
+  .opacityTest2 {
+    background-color: rgba(0, 0, 124, 0.5);
+  }
 </style>
