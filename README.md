@@ -10,16 +10,16 @@
 Creation on a rest api based upon data got from [this site](https://github.com/jdorfman/awesome-json-datasets#nasa).
 
 ## Our response:
--Using after getting the initial data, I imported it into a firebase realtime database and then developped a REST api for it using express.
--The api was then hosted on [heroku](https://limitless-peak-14538.herokuapp.com/meteor/).
--Once the Api was made I then used vue to devellop a separate front end to connect with the api.
+- Using after getting the initial data, I imported it into a firebase realtime database and then developped a REST api for it using express.
+- The api was then hosted on [heroku](https://limitless-peak-14538.herokuapp.com/meteor/).
+- Once the Api was made I then used vue to devellop a separate front end to connect with the api.
 
 
 ## Our difficulties :
--Learning to devellop a rest api as well as facing the somewhat poorly made documentation from axios
+- Learning to devellop a rest api as well as facing the somewhat poorly made documentation from axios
 
 ## Attribution
-The images displayed on the website are used under fair use and are owned by their respective companies.
+- The images displayed on the website are used under fair use and are owned by their respective companies.
 
 ## Libraries/frameworks used:
 #### Used in the front
