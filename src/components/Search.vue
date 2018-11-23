@@ -3,12 +3,10 @@
     <Header isActive="search"/>
     <div class="w3-card w3-text-white opacityTest w3-hide-small" style="width:75%;margin:auto;">
       <header class="w3-container opacityTest2">
-        <h2 class="w3-hide-small">Search for meteorites</h2>
-        <h4 class="w3-hide-medium w3-hide-large">Search for meteorites</h4>
+        <h2>Search for meteorites</h2>
       </header>
       <div class="w3-container">
-        <h4 class="w3-hide-small">Fill one or more field to refine your search</h4>
-        <h6 class="w3-hide-medium w3-hide-large">Fill one or more field to refine your search</h6>
+        <h4>Fill one or more field to refine your search</h4>
       </div>
       <form class="w3-container" action="" method="get" v-on:submit.prevent="search">
         <label for="">Name</label>
@@ -39,11 +37,9 @@
     </div>
     <div class="w3-card w3-text-white opacityTest w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
       <header class="w3-container opacityTest2">
-        <h2 class="w3-hide-small">Search for meteorites</h2>
         <h4 class="w3-hide-medium w3-hide-large">Search for meteorites</h4>
       </header>
       <div class="w3-container">
-        <h4 class="w3-hide-small">Fill one or more field to refine your search</h4>
         <h6 class="w3-hide-medium w3-hide-large">Fill one or more field to refine your search</h6>
       </div>
       <form class="w3-container" action="" method="get" v-on:submit.prevent="search">
@@ -67,7 +63,10 @@
         <input class="w3-check w3-margin-left opacity" type="checkbox" name="" value="after" v-model="after"> after
         <input class="w3-input opacity w3-text-white" type="text" name="" value="">
 
-        <input class="w3-btn w3-blue-gray" type="submit" name="" value="Search">
+        <div class="w3-display-container" style="height:50px;">
+          <input class="w3-btn w3-blue-gray w3-display-middle" type="submit" name="" value="Search">
+        </div>
+
       </form>
     </div>
     <div v-if="waiting" class="w3-container w3-text-white w3-center">
@@ -88,7 +87,7 @@
     </div>
     <div v-if="!loading" class="w3-card opacityTest w3-text-white w3-margin-top w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
       <header class="w3-container opacityTest2">
-        <h2>Your search results</h2>
+        <h4>Your search results</h4>
       </header>
       <ul class="w3-ul">
         <li :key="index" v-for="(item, index) in data" class="w3-border">
@@ -146,6 +145,7 @@ export default {
       return moment(input).format('YYYY');
     },
     search() {
+      this.data = null;
       this.waiting = true;
       const API_URL = 'https://limitless-peak-14538.herokuapp.com/meteor/';
       let url;

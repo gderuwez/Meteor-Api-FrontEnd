@@ -4,8 +4,9 @@
       <div class="w3-container w3-cell" style="width:25%">
         <button class="w3-button w3-xxlarge" v-on:click="toggleSideBar">&#9776;</button>
       </div>
-      <h1 class="w3-hide-small w3-container w3-cell w3-cell-middle">Meteorites of the world</h1>
-      <h4 class="w3-hide-medium w3-hide-large w3-container w3-cell w3-cell-middle">Meteorites of the world</h4>
+      <h1 class="w3-hide-small w3-container w3-cell w3-cell-middle w3-center">Meteorites of the world</h1>
+      <h4 class="w3-hide-medium w3-hide-large w3-container w3-cell w3-cell-middle w3-center">Meteorites of the world</h4>
+      <div class="w3-cell" style="width:25%"></div>
     </div>
 
     <div v-if="isOpen" class="w3-sidebar w3-bar-block w3-indigo w3-animate-left" id="mySidebar">

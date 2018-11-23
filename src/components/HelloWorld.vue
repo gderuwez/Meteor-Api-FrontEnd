@@ -6,7 +6,7 @@
     </div>
     <div v-else>
       <div>
-        <div class="w3-card opacityTest w3-hide-small" style="width:50%;margin:auto;">
+        <div class="w3-card opacityTest w3-hide-small" style="width:75%;margin:auto;">
           <header class="w3-container opacityTest2">
             <h2 class="w3-text-white">Metorite of the day</h2>
           </header>
@@ -19,7 +19,7 @@
         </div>
         <div class="w3-card opacityTest w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
           <header class="w3-container opacityTest2">
-            <h2 class="w3-text-white">Metorite of the day</h2>
+            <h4 class="w3-text-white">Metorite of the day</h4>
           </header>
           <div class="w3-container w3-text-white">
             <p>Name: {{data[0].name}} </p>
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="w3-card opacityTest w3-text-white w3-hide-small" style="width:50%;margin:auto;">
+      <div class="w3-card opacityTest w3-text-white w3-hide-small" style="width:75%;margin:auto;">
         <header class="w3-container opacityTest2">
           <h2>Meteorites this year</h2>
         </header>
@@ -43,7 +43,7 @@
       </div>
       <div class="w3-card opacityTest w3-text-white w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
         <header class="w3-container opacityTest2">
-          <h2>Meteorites this year</h2>
+          <h4>Meteorites this year</h4>
         </header>
         <ul class="w3-ul">
           <li :key="index" v-for="(item, index) in latest">

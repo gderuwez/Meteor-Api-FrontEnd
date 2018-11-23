@@ -88,10 +88,12 @@
         <div v-if="waiting" class="w3-container w3-center">
           <p><i class="fa fa-spinner w3-spin w3-text-white" style="font-size:64px"></i></p>
         </div>
+        <div class="w3-display-container" style="height:50px;">
+          <input v-if="loading" type="submit" class="w3-btn w3-blue-gray w3-display-middle" name="" value="Search">
+        </div>
 
-        <input v-if="loading" type="submit" class="w3-btn w3-blue-gray" name="" value="Search">
 
-        <div v-if="!loading">
+        <div v-if="!loading" class="w3-center">
           <button class="w3-btn w3-blue-gray" type="button" name="button" v-on:click="updating">Update</button>
           <button class="w3-btn w3-blue-gray" type="button" name="button" v-on:click="deleting">Delete</button>
           <button class="w3-btn w3-blue-gray" type="button" name="button" v-on:click="searching">New Search</button>
@@ -101,8 +103,10 @@
         </div>
       </form>
     </div>
-    <div v-if="message" class="w3-text-white">
+    <div v-if="message" class="w3-text-white w3-center w3-container">
       {{message}}
+      <img v-if="message2" src="../assets/boom.gif" alt="Nostradamus dies" class="w3-image">
+      <img v-if="message3" src="../assets/galactus.jpg" alt="Galactus eats" class="w3-image">
     </div>
   </div>
 </template>
@@ -132,7 +136,9 @@ export default {
       erroring: false,
       waiting: false,
       waiting2: false,
-      message: ''
+      message: null,
+      message2: false,
+      message3: false
     }
   },
   methods: {
@@ -148,6 +154,9 @@ export default {
       this.long = '';
       this.date = '';
       this.data = null;
+      this.message = null;
+      this.message2 = false;
+      this.message3 = false;
     },
     searching() {
       this.reseting();
@@ -180,6 +189,7 @@ export default {
       if(moment(this.date).isSameOrAfter("2048-01-01", 'year')) {
         this.message = "You FOOL! The earth will be gone by then !";
         this.waiting2 = false;
+        this.message2 = true;
       }
       else {
         axios.put(url)
@@ -204,6 +214,7 @@ export default {
       axios.delete(url)
       .then(() => {
         this.message = 'Galactus is pleased';
+        this.message3 = true;
         this.waiting = false;
         this.loading = true;
       })
@@ -211,8 +222,8 @@ export default {
         this.erroring = true;
       })
       .finally(() => {
-        this.reseting();
         this.waiting2 = false;
+        setTimeout(this.reseting, 2000);
       })
     }
   }
