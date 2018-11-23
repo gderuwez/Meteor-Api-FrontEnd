@@ -22,7 +22,7 @@ Creation on a rest api based upon data got from [this site](https://github.com/j
 The images displayed on the website are used under fair use and are owned by their respective companies.
 
 ## Libraries/frameworks used:
-####Used in the front
+#### Used in the front
 - [font awesome](https://fontawesome.com/)
 - [W3.css](https://www.w3schools.com/w3css/default.asp)
 - [Vue.js](https://vuejs.org/)
@@ -30,9 +30,10 @@ The images displayed on the website are used under fair use and are owned by the
 - [Axios](https://github.com/axios/axios)
 - [Moment](https://momentjs.com/)
 
-####Used for the api
+#### Used for the api
 - [Express](https://expressjs.com/)
 - [Firebase](https://firebase.google.com/)
 - [Jquery](https://jquery.com/)
 - [Moment](https://momentjs.com/)
 - [Body-parser](https://www.npmjs.com/package/body-parser)
+- [Validator.js](https://github.com/chriso/validator.js#validators)
