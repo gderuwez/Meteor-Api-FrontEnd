@@ -33,7 +33,7 @@
         <img v-if="message2" src="../assets/boom.gif" alt="Nostradamus dies" class="w3-image">
       </div>
     </div>
-    <div class="w3-card w3-hide-medium w3-hide-large" style="width:90%;margin:auto;">
+    <div class="w3-card w3-hide-medium w3-hide-large opacityTest" style="width:90%;margin:auto;">
       <header class="w3-container opacityTest2">
         <h4 class="w3-text-white">Add a new meteor</h4>
       </header>
